@@ -4,3 +4,5 @@ Domājot par piemērotu tēmu šim darbam es sapratu ka neko labu nespēju izdom
 ## Izmantotās bibliotēkas
 ### googlesearch
 Izmantots lai meklētu pieprasījumus google vidē bez atsevišķa loga atvēršanas
+## selenium
+Izmantots lai atvērtu nejauši izvēlēto mājaslapu lai lietotājs var to aplūkot uzreiz pēc tās izvēles

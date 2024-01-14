@@ -2,19 +2,34 @@ from googlesearch import search
 import random
 from selenium import webdriver
 
+def selectRandomWebsite(websites):
+    randomWebsite=random.choice(websites)
 
-websites=[]
-searchQuery=input("Lūdzu ievadiet meklējamo frāzi: ")
+    driver=webdriver.Chrome()
+    driver.get(randomWebsite)
 
-for j in search(searchQuery, tld="co.in", num=10, stop=50, pause=2):
-    websites.append(j)
+def selectPrompt():
+    websites=[]
+    searchQuery=input("Lūdzu ievadiet meklējamo frāzi: ")
 
-randomWebsite=random.choice(websites)
+    for j in search(searchQuery, tld="co.in", num=10, stop=10, pause=2):
+        websites.append(j)
 
-driver=webdriver.Chrome()
+    return websites
 
-driver.get(randomWebsite)
-
-waitBeforeClosing=input()
-while not waitBeforeClosing:
-    sleep(10)
+while True:
+    websites = selectPrompt()
+    while True:
+        selectRandomWebsite(websites)
+        repeatWebsiteVar=input("Vai jūs vēlaties izvēlēties citu mājalapu izmantojot šo pašu meklējamo frāzi? N-Nē, Jebkas cits-Jā: ")
+        if repeatWebsiteVar=="N":
+            break
+        while not repeatWebsiteVar:
+            sleep(10)
+        
+    repeatSearchVar=input("Vai jūs vēlaties ievadīt citu meklējamo frāzi? N-Nē, Jebkas cits-Jā: ")
+    if repeatWebsiteVar=="N":
+        break
+    while not repeatSearchVar:
+            sleep(10)
+    
