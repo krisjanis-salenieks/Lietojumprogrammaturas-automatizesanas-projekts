@@ -1,12 +1,15 @@
 from googlesearch import search
 import random
 from selenium import webdriver
+import time
 
 def selectRandomWebsite(websites):
     randomWebsite=random.choice(websites)
 
     driver=webdriver.Chrome()
     driver.get(randomWebsite)
+    time.sleep(2)
+    input("Uzspiediet ENTER lai aizvērtu pārlūka logu")
 
 def selectPrompt():
     websites=[]
@@ -17,19 +20,22 @@ def selectPrompt():
 
     return websites
 
-while True:
+repeatWebsitePrompt=True
+randomizeWebsite=True
+
+while repeatWebsitePrompt:
     websites = selectPrompt()
-    while True:
+    randomizeWebsite=True
+    while randomizeWebsite:
         selectRandomWebsite(websites)
-        repeatWebsiteVar=input("Vai jūs vēlaties izvēlēties citu mājalapu izmantojot šo pašu meklējamo frāzi? N-Nē, Jebkas cits-Jā: ")
-        if repeatWebsiteVar=="N":
-            break
+        repeatWebsiteVar=input("Vai jūs vēlaties izvēlēties citu mājalapu izmantojot šo pašu meklējamo frāzi? (j/n): ")
         while not repeatWebsiteVar:
-            sleep(10)
+            time.sleep(10)
+        if repeatWebsiteVar=="n":
+            randomizeWebsite=False
         
-    repeatSearchVar=input("Vai jūs vēlaties ievadīt citu meklējamo frāzi? N-Nē, Jebkas cits-Jā: ")
-    if repeatWebsiteVar=="N":
-        break
+    repeatSearchVar=input("Vai jūs vēlaties ievadīt citu meklējamo frāzi? (j/n): ")
     while not repeatSearchVar:
-            sleep(10)
-    
+            time.sleep(10)
+    if repeatSearchVar=="n":
+        repeatWebsitePrompt=False
